@@ -4,10 +4,20 @@
 </div>
 
 ## Tabla de contenido
-1. [Herramientas y Librerias Utilizadas](#⚙️-herramientas-y-librerias-utilizadas)
-2. [Estuctura del Proyecto](#📁-estructura-del-proyecto)
-3. [Instrucciones](#🖊️-instrucciones)
-4. [Autor](#👤-autor) 
+1. [Contexto](#📖-conmtexto)
+2. [Herramientas y Librerias Utilizadas](#⚙️-herramientas-y-librerias-utilizadas)
+3. [Estuctura del Proyecto](#📁-estructura-del-proyecto)
+4. [Instrucciones](#🖊️-instrucciones)
+5. [Autor](#👤-autor) 
+
+## 📖 Contexto
+
+<div>En esta oportunidad, presento un Administrador de Tareas en donde se podrá:
+    <li>Listar las tareas</li>
+    <li>Crear un titulo, descripcion, estado, prioridad</li>
+    <li>Actualizar las tareas</li>
+    <li>Eliminar las tareas</li>
+<div>
 
 ## ⚙️ Herramientas y Librerias Utilizadas
 Para el siguiente proyecto se hizo uso de las siguientes herramientas y librerias (el conocimiento sobre los mismos no require de un nivel avanzado para el entendimiento del proyecto):
