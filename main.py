@@ -62,10 +62,10 @@ class Task_Manager():
         """
         Crea la interfaz principal del administrador de tareas, incluyendo los botones
         para leer, crear, eliminar y actualizar tareas. Tambien configura el tamaño 
-        de la ventana principal y lanza el bucle de eventos de la aplicación.
+        de la ventana principal y lanza el bucle de eventos de la aplicacion.
         """
 
-        # Botón para leer tareas
+        # Boton para leer tareas
         button_read = tk.Button(
             self.button_grid,
             text='Leer Tareas',
@@ -77,7 +77,7 @@ class Task_Manager():
         )
         button_read.grid(row=0, column=0, sticky='nsew', padx=5, pady=5)
 
-        # Botón para crear nueva tarea
+        # Boton para crear nueva tarea
         button_create = tk.Button(
             self.button_grid,
             text='Crear Tarea',
@@ -89,7 +89,7 @@ class Task_Manager():
         )
         button_create.grid(row=0, column=1, sticky='nsew', padx=5, pady=5)
 
-        # Botón para eliminar tarea existente
+        # Boton para eliminar tarea existente
         button_delete = tk.Button(
             self.button_grid,
             text='Eliminar Tarea',
@@ -101,7 +101,7 @@ class Task_Manager():
         )
         button_delete.grid(row=0, column=3, sticky='nsew', padx=5, pady=5)
 
-        # Botón para actualizar tarea
+        # Boton para actualizar tarea
         button_update = tk.Button(
             self.button_grid,
             text='Actualizar Tarea',
@@ -136,17 +136,17 @@ class Task_Manager():
         """
         Lee el archivo 'tareas.csv' y muestra su contenido en la interfaz.
         Limpia el frame antes de cargar los datos.
-        Si el archivo no existe, muestra un mensaje y lo crea automáticamente.
+        Si el archivo no existe, muestra un mensaje y lo crea automaticamente.
         """
         try:
             self.clean_frame()
             with open('tareas.csv', 'r', newline='') as f:
                 # Itera sobre cada linea del archivo
                 for i, k in enumerate(f.readlines()):
-                    # Formatea el texto: reemplaza comas por ' -- ', guiones bajos por espacios y pasa a mayúsculas
+                    # Formatea el texto: reemplaza comas por ' -- ', guiones bajos por espacios y pasa a mayusculas
                     k = k.replace(',', ' -- ').replace('_', ' ').upper()
                     
-                    # Ajusta tamaño y color según si es la cabecera (linea 0)
+                    # Ajusta tamaño y color segun si es el encabezado (linea 0)
                     size = 14 if i == 0 else 12
                     color = 'black' if i == 0 else 'gray'
                     
@@ -164,7 +164,7 @@ class Task_Manager():
         
         except FileNotFoundError:
             self.send_message(
-                'El archivo no existe, se creará uno nuevo llamado "tareas.csv"...',
+                'El archivo no existe, se creara uno nuevo llamado "tareas.csv"...',
                 'PRIMARY'
             )
             self.crear_archivo()
@@ -172,7 +172,7 @@ class Task_Manager():
     def crear_tarea_ui(self):
         """
         Configura y muestra la interfaz para crear una nueva tarea.
-        Limpia el frame actual, carga los campos necesarios y agrega un botón para enviar la tarea.
+        Limpia el frame actual, carga los campos necesarios y agrega un boton para enviar la tarea.
         Registra logs de exito o error en la carga de la interfaz.
         """
         try:
@@ -191,22 +191,22 @@ class Task_Manager():
             submit_button.grid(row=5, column=1, sticky='nsew', padx=5, pady=5)
             
             self.tasks_frame.pack()
-            logging.info('Interfaz de creación de tareas cargada con exito')
+            logging.info('Interfaz de creacion de tareas cargada con exito')
             
         except FileNotFoundError as e:
-            logging.error(f'No se pudo cargar la interfaz de creación de tareas: {e}')
+            logging.error(f'No se pudo cargar la interfaz de creacion de tareas: {e}')
 
     def post_tarea(self):
         """
         Guarda una nueva tarea en el archivo 'tareas.csv' con los datos ingresados en la interfaz.
-        Luego limpia los campos de entrada y muestra un mensaje de confirmación.
-        En caso de que el archivo no exista, lo crea automáticamente.
-        Maneja errores y registra información relevante en el log.
+        Luego limpia los campos de entrada y muestra un mensaje de confirmacion.
+        En caso de que el archivo no exista, lo crea automaticamente.
+        Maneja errores y registra informacion relevante en el log.
         """
         try:
-            # Obtener la fecha actual para registrar la creación de la tarea
+            # Obtener la fecha actual para registrar la creacion de la tarea
             fecha_hoy = datetime.date(datetime.now())
-            # Obtener el próximo ID disponible para la tarea
+            # Obtener el proximo ID disponible para la tarea
             id = obtener_id()
             
             # Abrir el archivo CSV en modo append para agregar la nueva tarea
@@ -234,17 +234,17 @@ class Task_Manager():
             label.grid(row=0, column=1, sticky='nsew')
             self.message_frame.pack(padx=10, pady=10)
             
-            # Registrar en el log la creación exitosa de la tarea
+            # Registrar en el log la creacion exitosa de la tarea
             logging.info('Tarea creada con exito')
         
         except FileNotFoundError:
             # Manejo de error si no existe el archivo, se crea uno nuevo
-            self.send_message('El archivo no existe, se creará uno nuevo llamado "tareas.csv"...', 'PRIMARY')
+            self.send_message('El archivo no existe, se creara uno nuevo llamado "tareas.csv"...', 'PRIMARY')
             self.crear_archivo()
             logging.info('Creando archivo "tareas.csv"')
         
         except Exception as e:
-            # Mostrar mensaje de error en la interfaz en caso de cualquier excepción
+            # Mostrar mensaje de error en la interfaz en caso de cualquier excepcion
             label = tk.Label(self.root, text='Error al crear la tarea', fg='red', font=("Arial", 12))
             label.pack()
             logging.error(f'Error al crear la tarea: {e}')
@@ -254,7 +254,7 @@ class Task_Manager():
         """
         Configura y muestra la interfaz para eliminar una tarea por su ID.
         Limpia el frame actual y despliega un campo de entrada para el ID
-        y un botón para confirmar la eliminación.
+        y un boton para confirmar la eliminacion.
         """
         self.clean_frame()
         try:
@@ -266,7 +266,7 @@ class Task_Manager():
             self.id_entry = tk.Entry(self.tasks_frame, width=10)
             self.id_entry.grid(row=0, column=1, pady=5)
             
-            # Botón para borrar la tarea indicada por el ID
+            # Boton para borrar la tarea indicada por el ID
             submit_button = tk.Button(
                 self.tasks_frame,
                 text='Eliminar',
@@ -280,7 +280,7 @@ class Task_Manager():
             self.tasks_frame.pack()
             
         except FileNotFoundError:
-            logging.info('El archivo no existe, se creará uno nuevo llamado "tareas.csv"...')
+            logging.info('El archivo no existe, se creara uno nuevo llamado "tareas.csv"...')
             self.crear_archivo()
 
     
@@ -301,7 +301,7 @@ class Task_Manager():
         # Campos para editar la tarea (definidos en self.tasks_fields)
         self.tasks_fields()
         
-        # Botón para obtener datos de la tarea con el ID ingresado
+        # Boton para obtener datos de la tarea con el ID ingresado
         obtener_button = tk.Button(
             self.tasks_frame,
             text='Obtener',
@@ -311,7 +311,7 @@ class Task_Manager():
         )
         obtener_button.grid(row=6, column=0, pady=5)
         
-        # Botón para actualizar la tarea modificada
+        # Boton para actualizar la tarea modificada
         actualizar_button = tk.Button(
             self.tasks_frame,
             text='Actualizar',
@@ -329,13 +329,13 @@ class Task_Manager():
         """
         Actualiza una tarea existente en el archivo 'tareas.csv' con los datos ingresados en la interfaz.
         Busca la tarea por ID, modifica sus campos y guarda todos los registros nuevamente en el archivo.
-        Muestra mensajes de exito o error según corresponda.
+        Muestra mensajes de exito o error segun corresponda.
         """
         try:
             updated_tasks = []
             with open('tareas.csv', 'r', newline='') as f:
                 csv_reader = csv.DictReader(f, fieldnames=self.headers, lineterminator='')
-                next(csv_reader)  # Saltar cabecera
+                next(csv_reader)  # Saltar encabezado
                 for row in csv_reader:
                     if row['id'] == self.id_entry.get():
                         # Actualizar campos de la tarea con valores del UI
@@ -354,7 +354,7 @@ class Task_Manager():
             self.send_message('Tarea actualizada con exito', 'SUCCESS')
 
         except FileNotFoundError:
-            self.send_message('El archivo no existe, se creará uno nuevo llamado "tareas.csv"...', 'PRIMARY')
+            self.send_message('El archivo no existe, se creara uno nuevo llamado "tareas.csv"...', 'PRIMARY')
             self.crear_archivo()
             logging.info('Creando archivo "tareas.csv"')
 
@@ -381,12 +381,12 @@ class Task_Manager():
                         self.status_entry.insert(0, row['estado'])
                         self.prioridad_entry.insert(0, row['prioridad'])
             
-            # Si no se encontró la tarea, lanzar excepción personalizada
+            # Si no se encontro la tarea, lanzar excepcion personalizada
             if len(task) == 0:
                 raise Exception('La tarea no existe')
 
         except FileNotFoundError:
-            self.send_message('El archivo no existe, se creará uno nuevo llamado "tareas.csv"...', 'PRIMARY')
+            self.send_message('El archivo no existe, se creara uno nuevo llamado "tareas.csv"...', 'PRIMARY')
             self.crear_archivo()
 
         except Exception as e:
@@ -395,19 +395,19 @@ class Task_Manager():
 
     def delete_tarea(self):
         """
-        Elimina una tarea del archivo 'tareas.csv' según el ID ingresado en el campo correspondiente.
+        Elimina una tarea del archivo 'tareas.csv' segun el ID ingresado en el campo correspondiente.
         Valida que el ID exista, muestra ventana de error si no, y actualiza el archivo con las tareas restantes.
-        Ajusta los IDs para mantenerlos consecutivos y muestra mensajes de éxito o error según corresponda.
+        Ajusta los IDs para mantenerlos consecutivos y muestra mensajes de exito o error segun corresponda.
         """
         try:
             tareas_filtradas = []
             id_max = obtener_id()
             id_ingresado = self.id_entry.get()
             
-            # Validar que el ID ingresado no esté vacío y esté en el rango válido
+            # Validar que el ID ingresado no este vacio y este en el rango valido
             if id_ingresado == '' or int(id_ingresado) not in range(1, id_max):
                 win = tk.Toplevel()
-                win.wm_title("Opción Inválida")
+                win.wm_title("Opcion Invalida")
                 
                 label = ttk.Label(
                     win,
@@ -435,7 +435,7 @@ class Task_Manager():
             # Leer tareas y filtrar la que no coincide con el ID a eliminar
             with open('tareas.csv', 'r', newline='') as f:
                 csv_reader = csv.DictReader(f, fieldnames=self.headers, lineterminator='')
-                next(csv_reader)  # saltar cabecera
+                next(csv_reader)  # saltar encabezado
                 for tarea in csv_reader:
                     if tarea['id'] != id_ingresado:
                         tareas_filtradas.append(tarea)
@@ -451,10 +451,10 @@ class Task_Manager():
                 for tarea in tareas_filtradas:
                     csv_writer.writerow(tarea)
             
-            self.send_message('Tarea eliminada con éxito', 'SUCCESS')
+            self.send_message('Tarea eliminada con exito', 'SUCCESS')
         
         except FileNotFoundError:
-            self.send_message('El archivo no existe, se creará uno nuevo llamado "tareas.csv"...', 'PRIMARY')
+            self.send_message('El archivo no existe, se creara uno nuevo llamado "tareas.csv"...', 'PRIMARY')
             self.crear_archivo()
             logging.info('Creando archivo "tareas.csv"')
         
