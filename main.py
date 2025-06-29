@@ -230,7 +230,7 @@ class Task_Manager():
             self.prioridad_entry.delete(0, tk.END)
             
             # Mostrar mensaje de exito en la interfaz
-            label = tk.Label(self.message_frame, text='Tarea creada con exito', fg='green', font=("Arial", 12))
+            label = ttk.Label(self.message_frame, text='Tarea creada con exito', bootstyle='SUCCESS', font=("Arial", 12))
             label.grid(row=0, column=1, sticky='nsew')
             self.message_frame.pack(padx=10, pady=10)
             
@@ -403,7 +403,6 @@ class Task_Manager():
             tareas_filtradas = []
             id_max = obtener_id()
             id_ingresado = self.id_entry.get()
-            print(id_max, id_ingresado)
             
             # Validar que el ID ingresado no esté vacío y esté en el rango válido
             if id_ingresado == '' or int(id_ingresado) not in range(1, id_max):
