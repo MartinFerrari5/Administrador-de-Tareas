@@ -10,13 +10,11 @@ def crear_archivo():
             csv_writer =   csv.DictWriter(f,fieldnames=headers)
             csv_writer.writeheader()
             time.sleep(3)
-            print('Archivo creado')
-
-    
+            print('Archivo creado') 
         
 def leer_tareas():
     try:
-    
+        
         with open('tareas.csv', 'r',newline='') as f:
             next(f)
             for i in f.readlines():
